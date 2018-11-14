@@ -1,3 +1,9 @@
+GeneratedFiles/
+Intermediate/
+
+*.db
+*.user
+
 # Prerequisites
 *.d
 
