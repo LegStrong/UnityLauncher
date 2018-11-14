@@ -1,3 +1,13 @@
+GeneratedFiles/
+Intermediate/
+
+# vs
+*.exp
+*.ilk
+*.pdb
+*.db
+*.user
+
 # Prerequisites
 *.d
 
@@ -30,3 +40,4 @@
 *.exe
 *.out
 *.app
+
