@@ -1,6 +1,10 @@
 GeneratedFiles/
 Intermediate/
 
+# vs
+*.exp
+*.ilk
+*.pdb
 *.db
 *.user
 
@@ -36,3 +40,4 @@ Intermediate/
 *.exe
 *.out
 *.app
+
