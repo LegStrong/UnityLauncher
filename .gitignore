@@ -9,6 +9,7 @@ Intermediate/
 *.pdb
 *.db
 *.user
+*.VC.opendb
 
 # Prerequisites
 *.d

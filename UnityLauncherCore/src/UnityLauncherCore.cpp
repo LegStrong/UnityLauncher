@@ -64,7 +64,7 @@ void UnityLauncherCore::InitUnityVersionInfo()
 
 void UnityLauncherCore::InitRecentProjectsInfo()
 {
-	versionDict.clear();
+	recentProject.clear();
 
 	QSettings settings("HKEY_CURRENT_USER\\SOFTWARE\\Unity Technologies\\Unity Editor 5.x", QSettings::NativeFormat);
 	QStringList allKeys = settings.allKeys();
@@ -86,7 +86,10 @@ void UnityLauncherCore::InitRecentProjectsInfo()
 						QString tag = "m_EditorVersion:";
 						if (line.startsWith(tag)) {
 							QString version = line.mid(tag.length());
-							versionDict.insert(key, version);
+							ProjectInfo proj;
+							proj.projectPath = path.replace(QChar('/'), QChar('\\'));
+							proj.version = version;
+							recentProject.append(proj);
 							break;
 						}
 					}
@@ -102,9 +105,9 @@ void UnityLauncherCore::Reset()
 	InitRecentProjectsInfo();
 }
 
-QList<UnityLauncherCore::OpenedProject> UnityLauncherCore::GetOpenedProjects()
+QList<UnityLauncherCore::ProjectInfo> UnityLauncherCore::GetOpenedProjects()
 {
-	QList<OpenedProject> list;
+	QList<ProjectInfo> list;
 
 	// https://docs.microsoft.com/zh-cn/windows/desktop/ToolHelp/taking-a-snapshot-and-viewing-processes
 	HANDLE hProcessSnap;
@@ -135,7 +138,7 @@ QList<UnityLauncherCore::OpenedProject> UnityLauncherCore::GetOpenedProjects()
 			//list << exeFile;
 
 			WCHAR* path = QueryWorkingDirectory(pe32.th32ProcessID);
-			OpenedProject info;
+			ProjectInfo info;
 			info.pid = pe32.th32ProcessID;
 			info.projectPath = QString::fromStdWString(path);
 			list.append(info);
@@ -145,5 +148,24 @@ QList<UnityLauncherCore::OpenedProject> UnityLauncherCore::GetOpenedProjects()
 	CloseHandle(hProcessSnap);
 
 	return list;
+}
+
+const QList<UnityLauncherCore::ProjectInfo>& UnityLauncherCore::GetProjectInfo()
+{
+	QList<ProjectInfo> openedProject = GetOpenedProjects();
+
+	for(int i = 0; i < recentProject.length(); ++i)
+	{
+		if (openedProject.contains(recentProject[i])) {
+			int index = openedProject.indexOf(recentProject[i]);
+			recentProject[i] = openedProject[index];
+		}
+	}
+	return recentProject;
+}
+
+const QMap<QString, QString>& UnityLauncherCore::GetUnityApps()
+{
+	return versionDict;
 }
 
