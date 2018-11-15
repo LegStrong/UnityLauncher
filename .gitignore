@@ -1,6 +1,8 @@
 GeneratedFiles/
 Intermediate/
 
+.vs/
+
 # vs
 *.exp
 *.ilk
