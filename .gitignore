@@ -2,6 +2,8 @@ GeneratedFiles/
 Intermediate/
 
 .vs/
+obj/
+
 
 # vs
 *.exp
