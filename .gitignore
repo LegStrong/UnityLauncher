@@ -3,7 +3,7 @@ Intermediate/
 
 .vs/
 obj/
-
+bin/
 
 # vs
 *.exp
