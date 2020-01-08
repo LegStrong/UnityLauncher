@@ -149,7 +149,7 @@ namespace UnityLancher.View
                 if(listBox1.SelectedItem != null)
                 {
                     var item = listBox1.SelectedItem as UnityProject;
-                    System.Diagnostics.Process.Start("explorer.exe", string.Format("/select, \"{0}\"", item.path));
+                    System.Diagnostics.Process.Start("explorer.exe", string.Format("/select, \"{0}\"", item.path).Replace('/','\\'));
                 }
             }
         }
