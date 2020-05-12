@@ -18,6 +18,7 @@ namespace UnityLancher.Controller
 
 		public Dictionary<string, string> GetProjects()
 		{
+			model.Reset();
 			return model.recentProject;
 		}
 
