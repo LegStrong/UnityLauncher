@@ -36,7 +36,6 @@ namespace UnityLancher.Controller
 			var version = model.GetVersion(path);
 			if (string.IsNullOrEmpty(version))
 			{
-
 			}
 			else
 			{
