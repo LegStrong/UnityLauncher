@@ -104,6 +104,8 @@ namespace UnityLancher.View
             {
                 var item = items[0] as UnityProject;
                 controller.OpenProject(item.path, item.version);
+
+                controller.HideForm();
             }
         }
 

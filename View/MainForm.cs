@@ -30,6 +30,7 @@ namespace UnityLancher.View
 			InitializeComponent();
 
 			controller = new UnityProjectController();
+			controller.mainForm = this;
 
 			projectListControl = new ProjectListControl(controller);
 			createProjectControl = new CreateProjectForm(controller);

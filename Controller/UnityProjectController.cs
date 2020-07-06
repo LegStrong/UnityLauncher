@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using UnityLancher.Model;
 
 namespace UnityLancher.Controller
 {
 	public class UnityProjectController
 	{
+		public Form mainForm;
 		private UnityLancherCore model;
 
 		public UnityProjectController()
@@ -48,5 +50,10 @@ namespace UnityLancher.Controller
 		{
 			model.CreateProject(path, version);
 		}
+
+		public void HideForm()
+        {
+			mainForm.Visible = false;
+        }
 	}
 }
